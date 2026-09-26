@@ -1,4 +1,5 @@
 import React from 'react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -12,26 +13,29 @@ export const Footer: React.FC = () => {
         {/* Left side: Identity & Academic Affiliation */}
         <div className="space-y-1 text-center md:text-left">
           <div className="text-[#C4C8D8] font-medium font-serif-display text-base">
-            Julian Vance · Master of Science in Information &amp; Communication Technology
+            {PERSONAL_INFO.handle} · {PERSONAL_INFO.degree}
           </div>
           <div className="text-[11px] text-[#55596D]">
-            Institute for Advanced Telecommunications &amp; Media Technology · Class of 2026
+            {PERSONAL_INFO.location} · {PERSONAL_INFO.phone} · {PERSONAL_INFO.email}
           </div>
         </div>
 
-        {/* Center / Right: Quiet Navigation & Top Action */}
+        {/* Center / Right: Navigation & Top Action */}
         <div className="flex items-center gap-6">
-          <a href="#thesis" className="hover:text-[#E2B774] transition-colors">
-            Thesis
+          <a href="#about" className="hover:text-[#E2B774] transition-colors">
+            About
           </a>
-          <a href="#projects" className="hover:text-[#E2B774] transition-colors">
-            Works
+          <a href="#objectives" className="hover:text-[#E2B774] transition-colors">
+            Objectives
           </a>
-          <a href="#laboratory" className="hover:text-[#E2B774] transition-colors">
-            Lab
+          <a href="#sequence" className="hover:text-[#E2B774] transition-colors">
+            Sequence
           </a>
-          <a href="#publications" className="hover:text-[#E2B774] transition-colors">
-            Publications
+          <a href="#competencies" className="hover:text-[#E2B774] transition-colors">
+            Competencies
+          </a>
+          <a href="#contact" className="hover:text-[#E2B774] transition-colors">
+            Contact
           </a>
           <button
             onClick={scrollToTop}

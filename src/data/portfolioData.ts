@@ -1,398 +1,336 @@
-import { Project, Publication, EducationEntry, ExperienceEntry, ThesisData } from '../types/portfolio';
+import { CourseItem, CoreCompetency, EmphasisCompetency } from '../types/portfolio';
 
-export const THESIS_DATA: ThesisData = {
-  title: "Latent Semantic Routing & Synchronous Telepresence",
-  subtitle: "In Ultra-Dense Multi-Hop Optical & Wireless Mesh Topologies",
-  candidate: "Julian Vance",
-  institution: "Institute for Advanced Telecommunications & Media Technology",
-  department: "Department of Information and Communication Technology",
-  defenseDate: "May 28, 2026",
-  advisors: [
-    {
-      name: "Prof. Marcus Sterling, Ph.D.",
-      title: "Chair of Networked Distributed Systems",
-      lab: "Distributed Infrastructure & Quantum Comms Lab"
-    },
-    {
-      name: "Dr. Helena Rossi, Sc.D.",
-      title: "Associate Professor of Human-Computer Tele-Perception",
-      lab: "Computational Media & Spatial Acoustics Lab"
-    }
-  ],
-  committee: [
-    { name: "Prof. Aris Thorne", role: "Committee Chair", institution: "ETH Zurich / External" },
-    { name: "Prof. Marcus Sterling", role: "Primary Thesis Advisor", institution: "Institute of Telecommunications" },
-    { name: "Dr. Helena Rossi", role: "Co-Advisor", institution: "Center for Media Computation" },
-    { name: "Dr. Claire Wu", role: "Industry Evaluator", institution: "Bell Labs Network Architecture" }
-  ],
-  abstract:
-    "Next-generation telepresence requires continuous bidirectional multi-sensory synchronization under 50 milliseconds across variable-topology mesh networks. This thesis introduces Latent Semantic Routing (LSR), an adaptive transport layer architecture that decomposes high-dimensional spatial audio, volumetric point clouds, and haptic telemetry into semantically weighted packet vectors. By leveraging programmable eBPF datapaths and continuous hop-level queuing estimates, LSR prioritizes perceptually critical perceptual features during transient congestion periods. In our 64-node physical testbed across heterogeneous optical backhauls and 60GHz wireless links, LSR achieves a 41.6% reduction in perceptual jitter and maintains synchronized spatial coherence at 99.8th percentile link saturation.",
-  motivation:
-    "Traditional transport architectures treat all payload bytes as uniformly homogeneous. In immersive telepresence, however, a dropped audio harmonic or misplaced haptic impulse disrupts user presence far more catastrophically than a dropped background texture packet. Conventional congestion algorithms oscillate between bufferbloat and packet starvation; our framework synthesizes information theory with psychoacoustic perception thresholds to govern packet survival at the physical switch level.",
-  methodology:
-    "We designed and compiled an eBPF datapath module operating at the XDP (eXpress Data Path) layer on Linux kernels, paired with a custom Rust userspace scheduler. The system was validated across three operational regimes: (1) emulated NS-3 topology with 512 dynamic nodes, (2) physical hardware testbed of 16 optical routing appliances, and (3) double-blind perceptual evaluation tests with 40 human subjects engaging in collaborative spatial acoustic manipulation.",
-  innovations: [
-    "Perceptual Entropy Metric (PEM): A closed-form mathematical weight computing packet drop penalty based on spatial human auditory masking models.",
-    "eBPF-Accelerated Semantic Discard: Zero-copy in-kernel priority queue that enforces graceful perceptual degradation before socket buffers overflow.",
-    "Sub-Millisecond Clock Dissemination: Enhanced PTP (Precision Time Protocol) over variable-hop mesh topologies yielding <1.4μs inter-node synchronization.",
-    "Volumetric Point-Cloud Quantization: Variable-rate geometric compression dynamically throttled by available per-hop channel capacity."
-  ],
-  keyMetrics: [
-    { label: "Perceptual Jitter Reduction", value: "41.6%", context: "Compared to vanilla BBRv2 & Cubic" },
-    { label: "Sub-50ms End-to-End Latency", value: "99.4%", context: "Sustained across 7-hop mesh routing" },
-    { label: "eBPF Datapath Overhead", value: "< 140ns", context: "Per-packet processing at line rate" },
-    { label: "Channel Bandwidth Utilization", value: "94.2%", context: "Near theoretical Shannon capacity bound" }
-  ],
-  chapters: [
-    {
-      number: "01",
-      title: "Foundations & Telepresence Axioms",
-      pages: "pp. 1 – 42",
-      synopsis: "Explores the physiological perceptual constraints of human sensory organs when interacting through networked telecommunications interfaces.",
-      excerpts: "The human auditory system detects interaural time differences on the order of 10 microseconds, while visual vestibular alignment tolerates at most 20 milliseconds of latency before motion sickness emerges. When spatial telecommunications ignore these disparate psycho-physical time constants, uniform packet loss schemes trigger sensory dissonance."
-    },
-    {
-      number: "02",
-      title: "Semantic Packet Vector Formalism",
-      pages: "pp. 43 – 98",
-      synopsis: "Mathematical formulation of Latent Semantic Vectors (LSV), gradient descent on distributed queuing graphs, and Pareto-optimal channel slicing.",
-      excerpts: "Let S = {s_1, s_2, ..., s_k} represent the multimodal sensory streams comprising the telepresence field. We define the perceptual loss functional L_p(P) as the expected sensory divergence experienced by the remote operator when packet set P is truncated by link capacity C_e."
-    },
-    {
-      number: "03",
-      title: "eBPF Kernel Datapath & System Architecture",
-      pages: "pp. 99 – 164",
-      synopsis: "Low-level implementation details of the Rust/C++ routing engine, memory layout, XDP driver mode, and hardware NIC offloading.",
-      excerpts: "By hooking into the network interface driver before sk_buff allocation, the LSR classifier computes the 8-bit priority tag in 26 CPU cycles, permitting 100GbE wire-speed packet triage on commodity server architectures without dedicated ASIC silicon."
-    },
-    {
-      number: "04",
-      title: "Empirical Validation & Double-Blind User Trials",
-      pages: "pp. 165 – 220",
-      synopsis: "Comprehensive experimental results on the 64-node hardware testbed and statistical analysis of human participant trials.",
-      excerpts: "Human participants engaged in collaborative virtual object positioning achieved task completion times 37% faster under LSR versus standard WebRTC under simulated 15% random packet burst loss, demonstrating the real-world cognitive benefit of perceptual prioritization."
-    }
-  ]
+export const PERSONAL_INFO = {
+  name: "Jake",
+  fullName: "Jake Andrews",
+  handle: "@Jake",
+  degree: "M.S. in Information and Communication Technologies",
+  university: "University of Wisconsin-Stout (UW-Stout)",
+  programUrl: "https://www.uwstout.edu/programs/ms-information-communication-technologies",
+  mascot: "Blue Devils",
+  location: "704 Pirate Island Rd. Monona, WI 53716",
+  phone: "(715) 617-2471",
+  email: "jake@avalon.dev",
+  resumeUrl: "https://www.avalon.dev/cv",
+  avalonHomeUrl: "https://www.avalon.dev",
+  reflectionAidUrl: "https://drive.google.com/file/d/1MFYHEJpY1QnU9W5UxU4cTgSPqagwu0Hb/view?usp=drive_link",
+  bio: `I'm Jake, a Northern WI native with a background in tourism from restaurants to campsites, though my passion lies in technology. From networking and coding to support and engineering, I've gained valuable experience helping people connect and find information. Currently residing in Madison, WI, I work for a not-for-profit insurance company, specializing in Office 365. My resume can be found on Avalon.dev. Beyond work, I indulge in House music, alpha chill, and enjoy walking and exercising. If you'd like to get in touch, visit my contact form/page or reach out via text, call, or email. I'm also planning to blog more while organizing my papers and preparing for graduate-level courses and certificates in the near future! This portfolio was produced while a student at UW-Stout in the M.S. ICT program: About the Program - Go Blue Devils!`,
+  images: {
+    blueDevilHero: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/d4ca06ab-30a5-4c36-9985-296664301f28/gestalt3747_full_body_display_of_digital_hacker_blue_devil_hold_4e52af0b-c6ae-41f4-9c97-17053e4215cc.png",
+    uwStoutLogo: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/033b938f-76ca-4c38-80d6-dd63e2ca21a1/UW-Stout-Formal-WPU-Logo_Full-Color_Flat_RGB.svg.png",
+    lakeLandscape: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/83bdb61d-2b1a-413d-96d6-563625e37f82/Pasted+image+20220518115815.png",
+    blueDevilCartoon: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/95782986-1244-4f84-a99a-227fd4817222/friendlygestalt3747_cartoon_of_a_friendly_blue_devil_hacker_wearing_a_h_7f27c3f7-cbdc-46af-9493-a9552e1e6b82.png",
+    aiChipConcept: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/42c87709-0faa-464b-aaa1-ad340f676179/Efficient-AI-Chip-Art-Concept-1536x1024.jpg",
+  }
 };
 
-export const PROJECTS: Project[] = [
+export const PROGRAM_OBJECTIVES = [
   {
-    id: "synapse-mesh",
-    title: "Synapse Mesh: P2P Visual Telemetry & Resilient Multipath Routing",
-    subtitle: "Autonomous distributed mesh communication engine for extreme-loss disaster environments",
-    year: "2025 – 2026",
-    domain: "Distributed Systems & Telecommunications",
-    readTime: "6 min read",
-    featured: true,
-    summary:
-      "A peer-to-peer visual telemetry routing engine built for off-grid operations. Dynamically reconstructs topology maps, balances multi-commodity packet flows, and maintains low-latency situational video channels over fragmented Wi-Fi and 900MHz LoRa links.",
-    challenge:
-      "During natural disasters or infrastructure failure, cellular towers collapse, leaving responders with highly lossy, asymmetric, ad-hoc radio links where standard TCP/IP routing loops frequently fail.",
-    architecture:
-      "Developed a custom epidemic gossip routing protocol with Bloom-filter deduplication in Rust. Built WebRTC DataChannel relays with dynamic forward error correction (FEC) that scales parity packets inversely with signal-to-noise ratio (SNR).",
-    results: [
-      "Maintained 99.2% telemetry packet delivery across an 8-node physical ad-hoc cluster with 25% background packet loss.",
-      "Zero central coordinator dependency: nodes discover peers in under 300ms using encrypted UDP broadcast beacons.",
-      "Deployed and validated during the Regional Tactical Communications Field Exercise 2025."
-    ],
-    metrics: [
-      { label: "Delivery Ratio", value: "99.2%" },
-      { label: "Topology Convergence", value: "280ms" },
-      { label: "Packet Overhead", value: "< 3.5%" }
-    ],
-    stack: ["Rust", "WebRTC", "eBPF", "Tokio", "TypeScript", "Protobuf", "Linux Socket API"],
-    demoType: "network-routing"
+    num: "1",
+    title: "Appraise the influences between society and ICT development",
+    description: "Critically evaluate the multi-directional pressures between societal structures, human interactions, and the evolution of digital communication systems."
   },
   {
-    id: "aura-spatial",
-    title: "Aura: Spatial Acoustic Telepresence & Haptic Synchronization",
-    subtitle: "Zero-perceptible-latency binaural audio telemetry protocol over variable-jitter networks",
-    year: "2025",
-    domain: "Human-Computer Interaction & Audio DSP",
-    readTime: "5 min read",
-    featured: true,
-    summary:
-      "An open-source telepresence framework mapping 6-DoF spatial audio and vibrotactile haptic impulses over unpredictable consumer networks using neural packet interpolation and Head-Related Transfer Function (HRTF) acceleration.",
-    challenge:
-      "Spatial acoustic realism collapses when inter-channel phase discrepancies exceed 40 microseconds or when audio-haptic skew exceeds 15ms, destroying the tactile illusion of co-presence.",
-    architecture:
-      "Engineered a WebAudio AudioWorklet and SIMD-accelerated C++ DSP library. Implemented Kalman-filtered jitter buffer prediction and psychoacoustic mask concealment to hide dropped audio packets without pitch warping.",
-    results: [
-      "Achieved sub-18ms audio-to-haptic synchronization across transatlantic WAN links.",
-      "Eliminated audible clicks and artifacts during packet burst loss up to 18% via generative phase reconstruction.",
-      "Adopted by three university media research labs for collaborative musical tele-performance."
-    ],
-    metrics: [
-      { label: "Audio-Haptic Skew", value: "< 2.1ms" },
-      { label: "DSP Latency", value: "1.4ms" },
-      { label: "Sample Rate", value: "96kHz / 24-bit" }
-    ],
-    stack: ["C++20", "WebAudio SIMD", "WebAssembly", "WebSockets", "HRTF Convolution", "Python"],
-    demoType: "audio-haptics"
+    num: "2",
+    title: "Analyze the relationship between organizations and ICT",
+    description: "Deconstruct how enterprise workflows, corporate structures, and employee enablement dynamics shape and are shaped by information platforms."
   },
   {
-    id: "prism-optics",
-    title: "Prism: Photonic Packet Scheduling & WDM Optical Conduit Sim",
-    subtitle: "Interactive algorithmic simulator for Dense Wavelength Division Multiplexing optical networks",
-    year: "2024 – 2025",
-    domain: "Optical Communications & Algorithmic Routing",
-    readTime: "7 min read",
-    featured: false,
-    summary:
-      "A high-fidelity optical communication and photonic switch simulation platform. Visualizes laser wavelength allocations, chromatic dispersion compensation, and optical cross-connect (OXC) packet queues at 800Gbps channel densities.",
-    challenge:
-      "Modeling non-linear Kerr effects and four-wave mixing in dense optical fiber cables requires solving non-linear Schrödinger equations, which traditional network simulators approximate too coarsely.",
-    architecture:
-      "Built a GPU-accelerated split-step Fourier numerical solver in WebGL/Compute shaders and Rust. Interfaced with an interactive visual canvas that models optical amplifiers (EDFA), wavelength multiplexers, and optical reconfigurable OADM nodes.",
-    results: [
-      "Simulated 128 wavelength channels with 50GHz ITU grid spacing at real-time 60fps.",
-      "Verified optical signal-to-noise ratio (OSNR) predictions against physical fiber test loop measurements within 0.4 dB error margin.",
-      "Awarded Best Engineering Demonstration at the Regional Graduate Research Symposium."
-    ],
-    metrics: [
-      { label: "Max Channel Count", value: "128 Wavelengths" },
-      { label: "Emulated Throughput", value: "102.4 Tbps" },
-      { label: "Solver Accuracy", value: "99.6%" }
-    ],
-    stack: ["Rust", "WebGL", "GLSL Shaders", "TypeScript", "Numerical FFT", "React"],
-    demoType: "optical-prism"
+    num: "3",
+    title: "Critique trends impacting the ICT professional",
+    description: "Assess emergent technical shifts, workforce evolution, continuous upskilling, and credentialing patterns for contemporary technology specialists."
   },
   {
-    id: "veritas-ledger",
-    title: "Veritas: Zero-Knowledge Verifiable Broadcast & Media Provenance",
-    subtitle: "Cryptographic integrity verification for journalistic telecommunications and live media streams",
-    year: "2024",
-    domain: "Applied Cryptography & Media Systems",
-    readTime: "5 min read",
-    featured: false,
-    summary:
-      "A lightweight media provenance pipeline that generates succinct zero-knowledge proofs (zk-SNARKs) of camera sensor telemetry and digital signatures at the moment of packetization, neutralizing deepfake media injection in transit.",
-    challenge:
-      "Verifying authenticity of live broadcast streams across untrusted transit CDN nodes without revealing source geolocation or proprietary cryptographic sensor keys.",
-    architecture:
-      "Constructed a Circom circuit that verifies camera sensor attestations and frame hashes into a single constant-size Groth16 proof per media segment (1.2 seconds), verified on-chain or directly by client web browsers in under 12ms.",
-    results: [
-      "Sub-15ms proof verification latency in modern browser engines.",
-      "Zero telemetry payload bloat: proof adds only 128 bytes per second to HLS/DASH media streams.",
-      "Published as a student workshop paper at ACM Multimedia Security 2024."
-    ],
-    metrics: [
-      { label: "Verification Time", value: "11.8ms" },
-      { label: "Proof Size", value: "128 Bytes" },
-      { label: "Tamper Detection", value: "100%" }
-    ],
-    stack: ["Circom", "SnarkJS", "Rust", "WebCrypto API", "HLS / WebRTC", "TypeScript"],
-    demoType: "cryptography"
+    num: "4",
+    title: "Evaluate ICT related to one’s own career",
+    description: "Align personal technical specializations—such as Office 365, enterprise infrastructure, and digital communications—with industry trajectories."
   },
   {
-    id: "kinesics-edge",
-    title: "Kinesics: Low-Bandwidth Non-Verbal Communication Synthesis",
-    subtitle: "Edge computer vision model compressing video streams to 8kbps semantic micro-postures",
-    year: "2023 – 2024",
-    domain: "Computer Vision & Edge Computing",
-    readTime: "4 min read",
-    featured: false,
-    summary:
-      "A neural compression system for remote video communication in satellite and maritime environments with severely restricted bandwidth. Reconstructs lifelike facial expressions and gaze contact from 8kbps micro-vectors.",
-    challenge:
-      "Standard H.264/H.265 video codecs degrade into unwatchable macroblocks below 100kbps, severing human emotional cues in low-bandwidth rural and remote operations.",
-    architecture:
-      "Runs an ONNX-optimized lightweight 3D facial landmark model on edge hardware (NVIDIA Jetson / Apple Silicon) extracting 68 semantic keypoints and rigid head poses. The receiving client synthesizes realistic video via client-side neural radiance renderers.",
-    results: [
-      "Reduced bandwidth requirements by 94.6% compared to baseline VP9 at 360p.",
-      "Preserved natural micro-expressions and mutual eye contact during double-blind communication assessment.",
-      "Tested successfully over Iridium satellite links with 12kbps real-world throughput limits."
-    ],
-    metrics: [
-      { label: "Bandwidth Used", value: "8.2 kbps" },
-      { label: "Compression Ratio", value: "94.6%" },
-      { label: "Inference Speed", value: "60 fps" }
-    ],
-    stack: ["PyTorch", "ONNX Runtime", "C++", "OpenCV", "MediaPipe", "WebRTC"],
-    demoType: "computer-vision"
+    num: "5",
+    title: "Forecast the influence of ICT systems",
+    description: "Deploy systems thinking and technology forecasting models to project future scenarios, strategic opportunities, and disruption pathways."
+  },
+  {
+    num: "6",
+    title: "Conduct research contributing to ICT",
+    description: "Synthesize literature, examine historical and political contexts, and author scholarly perspectives advancing the computing body of knowledge."
+  },
+  {
+    num: "7",
+    title: "Design ICT systems",
+    description: "Architect robust, scalable, and human-centric enterprise solutions balancing operational prudence, security regulations, and user empowerment."
   }
 ];
 
-export const PUBLICATIONS: Publication[] = [
+export const COURSE_SEQUENCE: CourseItem[] = [
   {
-    id: "pub-01",
-    title: "Latent Semantic Routing: Perceptual Entropy Datapaths for Immersive Telepresence",
-    authors: "Julian Vance, Helena Rossi, Marcus Sterling",
-    venue: "IEEE Transactions on Network and Service Management (TNSM)",
-    year: 2026,
-    doi: "10.1109/TNSM.2026.3409182",
-    type: "Journal",
-    abstract:
-      "In this paper, we propose a mathematical and system-level framework for routing multimodal telepresence streams based on real-time perceptual entropy. We implement an eBPF datapath classifier that operates at wire-speed to selectively triage packets based on psychoacoustic and visual salience metrics, yielding significant latency stabilization under congestion.",
-    citations: 14,
-    bibtex: `@article{vance2026latent,
-  title={Latent Semantic Routing: Perceptual Entropy Datapaths for Immersive Telepresence},
-  author={Vance, Julian and Rossi, Helena and Sterling, Marcus},
-  journal={IEEE Transactions on Network and Service Management},
-  volume={23},
-  number={2},
-  pages={1120--1135},
-  year={2026},
-  publisher={IEEE},
-  doi={10.1109/TNSM.2026.3409182}
-}`
+    id: "seq-1",
+    term: "Fall 23",
+    code: "ICT 700",
+    title: "Introduction to Information & Communication Technologies",
+    description: "Overview of the MS in ICT. Research strategies, collaborative software overview and portfolio development.",
+    category: "core",
+    status: "Completed"
   },
   {
-    id: "pub-02",
-    title: "Synchronous Spatial Audio & Haptic Tele-Perception Across Fragmented Mesh Networks",
-    authors: "Julian Vance, Helena Rossi",
-    venue: "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT)",
-    year: 2025,
-    doi: "10.1145/3610928.3610941",
-    type: "Conference",
-    abstract:
-      "We investigate the perceptual bounds of human synchrony when manipulating collaborative spatial audio and tactile objects across jittery peer-to-peer mesh connections. We propose a predictive Kalman jitter buffer tailored to acoustic phase alignment and demonstrate its efficacy in double-blind participant trials.",
-    citations: 28,
-    bibtex: `@inproceedings{vance2025synchronous,
-  title={Synchronous Spatial Audio & Haptic Tele-Perception Across Fragmented Mesh Networks},
-  author={Vance, Julian and Rossi, Helena},
-  booktitle={Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. (IMWUT)},
-  volume={9},
-  number={3},
-  pages={1--22},
-  year={2025},
-  doi={10.1145/3610928.3610941}
-}`
+    id: "seq-2",
+    term: "Spring 24",
+    code: "ICT 701",
+    title: "Information & Communication Technologies in Organizations",
+    description: "Evaluation of information and communication technologies. Impacts and development of information and communication technologies in organizations and society.",
+    category: "core",
+    status: "Completed"
   },
   {
-    id: "pub-03",
-    title: "Zero-Knowledge Media Provenance for Live Telecommunication Channels",
-    authors: "Julian Vance, Aris Thorne, Claire Wu",
-    venue: "ACM Conference on Computer and Communications Security (CCS) Workshop on MMSP",
-    year: 2024,
-    doi: "10.1145/3548606.3563914",
-    type: "Workshop",
-    abstract:
-      "Presents an end-to-end cryptographic pipeline verifying the sensor capture integrity of live streaming video frames using constant-size zk-SNARKs, preventing real-time deepfake injection into public safety and journalism transmissions.",
-    citations: 9,
-    bibtex: `@inproceedings{vance2024zkprovenance,
-  title={Zero-Knowledge Media Provenance for Live Telecommunication Channels},
-  author={Vance, Julian and Thorne, Aris and Wu, Claire},
-  booktitle={ACM CCS Workshop on Multimedia Security & Provenance},
-  pages={45--52},
-  year={2024},
-  doi={10.1145/3548606.3563914}
-}`
+    id: "seq-3",
+    term: "Spring 24",
+    code: "ICT 505",
+    title: "Information Systems for Enterprise",
+    description: "Information systems concepts and technology for contemporary enterprise. Includes hardware, software, networks, and enterprise‐specific information systems. Emphasis on business‐prudent solutions/products based on clearly identifies needs/goals.",
+    category: "emphasis",
+    status: "Completed"
   },
   {
-    id: "pub-04",
-    title: "Dynamic Forward Error Correction in Heterogeneous Low-Power Mesh Topologies",
-    authors: "Julian Vance, Marcus Sterling",
-    venue: "IEEE International Conference on Distributed Computing Systems (ICDCS) Poster",
-    year: 2024,
-    doi: "10.1109/ICDCS.2024.00118",
-    type: "Conference",
-    abstract:
-      "Explores adaptive Reed-Solomon and Cauchy-distribution fountain codes that adjust parity overhead dynamically based on moving-window Signal-to-Interference-plus-Noise Ratio (SINR) in multi-hop municipal radio links.",
-    citations: 6,
-    bibtex: `@inproceedings{vance2024dynamicfec,
-  title={Dynamic Forward Error Correction in Heterogeneous Low-Power Mesh Topologies},
-  author={Vance, Julian and Sterling, Marcus},
-  booktitle={IEEE ICDCS Poster Proceedings},
-  pages={118--120},
-  year={2024}
-}`
+    id: "seq-4",
+    term: "Summer 24",
+    code: "ICT 710",
+    title: "Learning Technologies",
+    description: "Overview and selection criteria of instructor‐led, computer‐based, and distance learning systems for delivering content to trainees in the workplace. Includes the development of training materials in a variety of formats.",
+    category: "core",
+    status: "Completed"
+  },
+  {
+    id: "seq-5",
+    term: "Fall 24",
+    code: "ICT 555",
+    title: "Information and Communication Technologies Systems Analysis",
+    description: "Information and communication technologies (ICT) systems analysis and design methods supporting contemporary enterprise. Includes roles, relationship to systems development lifecycle (SDLC) reflecting contemporary ICT systems analysis and design practice, methodologies and ICT project management.",
+    category: "emphasis",
+    status: "Completed"
+  },
+  {
+    id: "seq-6",
+    term: "Fall 24",
+    code: "ICT 732",
+    title: "Technology Futures",
+    description: "Apply systems thinking in developing frameworks for forecasting technology driven topics. Examine the implications of technological change along with social change for various futures.",
+    category: "core",
+    status: "Completed"
+  },
+  {
+    id: "seq-7",
+    term: "Spring 25",
+    code: "ICT 605",
+    title: "Enterprise Technology Seminar",
+    description: "Trends in enterprise technology including systematic development processes to solve business problems and support business processes, identification and use of contemporary enterprise technology solutions, sources of enterprise technology support, training and information and enterprise technology credentialing and career opportunities.",
+    category: "emphasis",
+    status: "Completed"
+  },
+  {
+    id: "seq-8",
+    term: "Spring 25",
+    code: "DMT 511",
+    title: "ICT Analytics",
+    description: "Research current and future trends in ICT Analytics, ad-tech, security metrics, and emerging trends in big data and enterprise applications.",
+    category: "emphasis",
+    status: "Completed"
+  },
+  {
+    id: "seq-9",
+    term: "Summer 25",
+    code: "ICT 601",
+    title: "Information Technology Policy & Audit",
+    description: "Information technology policy, regulatory and audit issues, international standards, and internal security strategies.",
+    category: "emphasis",
+    status: "Completed"
+  },
+  {
+    id: "seq-10",
+    term: "Fall 25",
+    code: "ICT 733",
+    title: "Technology Adoption and Implications",
+    description: "Technological changes across historical, political, and social contexts. Actionable recommendations regarding technology usage and systems in the workplace.",
+    category: "core",
+    status: "Completed"
+  },
+  {
+    id: "seq-11",
+    term: "Fall 25",
+    code: "ICT 780",
+    title: "ICT Portfolio",
+    description: "Develop and present a portfolio that contains artifacts and research‐based reflections that demonstrate the competencies for the ICT MS. Final product is an electronic portfolio.",
+    category: "core",
+    status: "Completed"
   }
 ];
 
-export const EDUCATION_DATA: EducationEntry[] = [
+export const CORE_COMPETENCIES: CoreCompetency[] = [
   {
-    degree: "Master of Science in Information & Communication Technology",
-    institution: "Institute for Advanced Telecommunications & Media Technology",
-    location: "Zurich / Boston",
-    period: "2024 – 2026",
-    gpa: "4.0 / 4.0 (Summa Cum Laude / Distinction Candidate)",
-    focus: "Distributed Communication Systems, Spatial Telepresence & High-Throughput Network Protocols",
-    honors: [
-      "Departmental Graduate Research Fellowship (2024 – 2026)",
-      "Best Graduate Demonstration Award, Regional ICT Symposium (2025)",
-      "IEEE Communications Society Graduate Student Member"
+    id: 1,
+    title: "Appraise the influences between society and ICT development",
+    subCompetencies: [
+      "1. Conduct a literature search (ICT-700)",
+      "2. Compare definitions for information, communication, technologies, and information and communication technologies (ICT-701)",
+    ],
+    reflection:
+      "I want to understand and articulate how social relationships influence and serve as a model for machine relationships. Oftentimes there are analogies for how these communications take place, as well as levels of definition or abstraction. I believe that my written work in these two classes will demonstrate that I have reflected on these important distinctions.",
+    outcome:
+      "I am able to reflect on the distinctions, systems, relationships, and perspectives that constitute sociotechnical systems.",
+    artifacts: [
+      {
+        title: "Sociotechnical Systems & ICT Definitions Literature Review",
+        introduction: "Literature synthesis comparing foundational models of information and communication technologies and examining how human social networks inform machine network abstractions.",
+      }
     ]
   },
   {
-    degree: "Bachelor of Science in Computer Engineering & Telecommunications",
-    institution: "State University School of Engineering & Applied Sciences",
-    location: "San Francisco, CA",
-    period: "2020 – 2024",
-    gpa: "3.94 / 4.0 (Dean's Honor List all semesters)",
-    focus: "Network Architecture, Embedded Systems & Signal Processing",
-    honors: [
-      "Valedictorian Nominee & Senior Capstone First Prize",
-      "National Science Foundation Undergraduate Research Fellow (REU)"
+    id: 2,
+    title: "Analyze the relationship between organizations and ICT",
+    subCompetencies: [
+      "1. Assess the impact of ICTs on organizations and society research, e‐commerce, e‐business, E-government, and the learning models. (ICT 701)",
+      "2. Select appropriate training methods to meet training course and program needs. (ICT-710)"
+    ],
+    reflection:
+      "I am curious how organizations continue to invest in human development to accomplish their goals, whether that is profit or social impact. By doing an actual training method project (possibly SCORM format) and slide deck I will more fully appreciate how and why education delivered by ICT is organized to manifest specific objective outcomes to help an organization be successful.",
+    outcome:
+      "I am able to help others learn how to become empowered by ICT systems in their organization and enhance human development.",
+    artifacts: [
+      {
+        title: "Enterprise Learning Technology & Organizational Enablement",
+        introduction: "Interactive training curriculum design exploring workplace enablement, modern SCORM delivery, and employee digital literacy.",
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Evaluate ICT related to one’s own career",
+    subCompetencies: [
+      "1. Predict future trends in ICT (ICT-701)",
+      "2. Identify trends or correlations between technological changes and the student’s career discipline (ICT-733)"
+    ],
+    reflection:
+      "I would like to take the time to thoroughly investigate emerging technologies so I can prepare for the impact on myself and the people I serve. I will produce an artifact that demonstrates creative analysis and synthesis to evaluate an uncertainty in my future. It will be one or more of the emerging technologies outlined by the World Economic Forum.",
+    outcome:
+      "I am able to predict future trends in ICT and identify trends that will influence my professional peers.",
+    artifacts: [
+      {
+        title: "Emerging Technologies Trend Evaluation & Career Synthesis",
+        introduction: "Comprehensive evaluation of World Economic Forum emerging tech vectors, mapping generative tools and SaaS architectures to career trajectory.",
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "Conduct research contributing to ICT",
+    subCompetencies: [
+      "1. Articulate direct and indirect implications of a pivotal technological development across historical, political, and social contexts in one or more countries (ICT-733)",
+      "2. Analyze contemporary research findings and practices. (ICT-780)"
+    ],
+    reflection:
+      "I want to grow professionally by having a big picture perspective over time for ideas that have influenced technology systems. It is often claimed that there are few really new ideas when it comes to computing systems. I will create an intellectual artifact (paper) that represents my understanding and synthesis of information to create a perspective on these relationships.",
+    outcome:
+      "I am able to synthesize and create a point of view that can articulate and analyze the facets of historical and social contexts with modern information.",
+    artifacts: [
+      {
+        title: "Historical & Sociopolitical Computing Paradigms",
+        introduction: "Scholarly research paper analyzing historical recurrence in computing systems and assessing policy implications of cloud platform concentration.",
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "Design ICT systems",
+    subCompetencies: [
+      "1. Design ICT systems. (ICT-701)",
+      "2. Apply common forecasting techniques to explore various futures for technology. (ICT-732)"
+    ],
+    reflection:
+      "For me, to consider the future and what that looks like, is important to having an influence on the creation or modification of an ICT system like the one I manage every day at work. I will demonstrate that I have considered the social and scientific aspects of designing an ICT system. This will likely be in one of the Enterprise Technology emphasis courses, and may be an extended multiple-page matrix.",
+    outcome:
+      "I can apply forecasting techniques to design ICT systems that are robust and reliable.",
+    artifacts: [
+      {
+        title: "Robust Enterprise Cloud Architecture & Forecasting Matrix",
+        introduction: "Comprehensive system architecture matrix incorporating quantitative Delphi forecasting, failover reliability, and user-centric governance.",
+      }
     ]
   }
 ];
 
-export const EXPERIENCE_DATA: ExperienceEntry[] = [
+export const EMPHASIS_COMPETENCIES: EmphasisCompetency[] = [
   {
-    role: "Graduate Research Assistant",
-    organization: "Distributed Infrastructure & Computational Media Lab",
-    period: "2024 – Present",
-    location: "Zurich / Boston",
-    description: [
-      "Designed and deployed the 64-node physical mesh network testbed used to evaluate high-throughput telepresence protocols.",
-      "Engineered Linux kernel eBPF modules running at the XDP level to triage packet queues under multi-gigabit throughput.",
-      "Co-authored 3 peer-reviewed research papers in IEEE and ACM journals and conferences."
-    ],
-    skills: ["Rust", "eBPF / XDP", "C++", "Linux Kernel", "NS-3", "P2P Protocols"]
+    code: "ICT-505",
+    title: "Information Systems for Enterprise",
+    objective: "Analyze information system needs of an enterprise and recommend business‐prudent solutions based on clearly identified needs/goals.",
+    reflection:
+      "I will produce a paper that has tables taking into account the budget archeology of a real-life organization (probably my current department) if possible. This will help me make sure that I am working with consistent, true-to-life restrictions and finance information.",
+    outcome:
+      "I can understand and respond to the information needs of an enterprise using decision-making models.",
+    artifacts: [
+      {
+        title: "Enterprise Systems Budget Archeology & Decision Model",
+        introduction: "Financial and systems modeling balancing capital expenditure, operational subscriptions, and risk vectors in enterprise infrastructure.",
+      }
+    ]
   },
   {
-    role: "Graduate Teaching Assistant",
-    organization: "Department of Information and Communication Technology",
-    period: "2024 – 2026",
-    location: "Zurich / Boston",
-    description: [
-      "ICT 502: Advanced Distributed Network Architecture (Graduate level, 45 students). Led laboratory sessions on QUIC internals, BGP routing, and congestion control algorithms.",
-      "ICT 315: Telepresence, Spatial Media & Audio Computation (Undergraduate, 60 students). Mentored 12 team capstones on real-time WebRTC and spatial acoustic DSP."
-    ],
-    skills: ["Curriculum Design", "Laboratory Instruction", "Code Review", "Mentorship"]
+    code: "ICT-555",
+    title: "ICT Systems Analysis and Design",
+    objective: "Compare strengths and weaknesses of each ICT systems analysis and design method.",
+    reflection:
+      "I will perform work to compare and contrast the different methods of systems analysis and design. This may include waterfall, agile, or others. I project that these methods are not obsolete but have their different times and places for strengths and weaknesses. This will results in a paper or written discussion with others in the course.",
+    outcome:
+      "I am able to select and use the most appropriate analysis and design method for the organization.",
+    artifacts: [
+      {
+        title: "Comparative Analysis of SDLC Methodologies in Modern Enterprise",
+        introduction: "Deep comparative study of Waterfall, Agile, and DevOps workflows mapped to compliance-heavy healthcare/insurance domains.",
+      }
+    ]
   },
   {
-    role: "Systems & Network Architecture Research Intern",
-    organization: "Bell Labs / Telecommunications Innovation Center",
-    period: "Summer 2025",
-    location: "Murray Hill, NJ",
-    description: [
-      "Investigated sub-millisecond clock dissemination over variable-delay optical-wireless edge relays.",
-      "Implemented hardware timestamping integration on high-speed FPGA network interface cards.",
-      "Presented findings to global senior research fellows, resulting in one pending patent application."
-    ],
-    skills: ["Precision Time Protocol (PTP)", "FPGA Timestamping", "C++", "Optical Switching"]
+    code: "ICT-601",
+    title: "Information Technology Policy & Audit",
+    objective: "Analyze the impact of regulations and policy associated with the implementation of new technologies.",
+    reflection:
+      "I will research and write about the regulations and policy, especially US Government modernization using the NIST and CMMC frameworks. My workplace organization including my department (Enterprise Applications) is directly affected by these regulations and standards. This could result in a directly applicable recommendation for adopting NIST 800-53.",
+    outcome:
+      "I am able to analyze and implement federal and international regulations and policy.",
+    artifacts: [
+      {
+        title: "NIST 800-53 & CMMC Compliance Policy Blueprint",
+        introduction: "Actionable cybersecurity and compliance governance roadmap tailored to corporate enterprise application environments.",
+      }
+    ]
+  },
+  {
+    code: "ICT-605",
+    title: "Enterprise Technology Seminar",
+    objective: "Examine alternatives for enterprise technology credentialing.",
+    reflection:
+      "To help my current organization, I will make a proposal that will be in favor of investment in covering certifications and some training conglomeration sites like Oreilly, INE or PluralSight. We currently don't cover certifications or education, but our new CIDO believes in getting better everyday and clearly certification is part of that. By demonstrating the benefits of enterprise credentialing with a presentation or PowerPoint I will be aligning and informing leadership.",
+    outcome:
+      "I am able to examine and recommend alternatives and options for enterprise technology credentialing.",
+    artifacts: [
+      {
+        title: "Executive Proposal: Enterprise Technology Credentialing & Upskilling",
+        introduction: "Strategic executive slide deck and ROI proposal establishing subsidized corporate certification pathways.",
+      }
+    ]
+  },
+  {
+    code: "DMT-511",
+    title: "ICT Analytics",
+    objective: "Research current and future trends in ICT Analytics.",
+    reflection:
+      "I will review and analyze ad-tech and security metrics as well as bring in outside resources to write about emerging trends in big data and enterprise applications. This will be done in my last class so I will have plenty of time of reflect on enterprise goal metrics like Key Performance Indicators and Objective Key Results. If possible I'd like to publish a page on this in my portfolio.",
+    outcome:
+      "I can research current and future trends in ICT analytics.",
+    artifacts: [
+      {
+        title: "Enterprise Big Data & Security Analytics Evaluation",
+        introduction: "Empirical study on telemetry observability, KPI dashboarding, and zero-trust security signal synthesis.",
+      }
+    ]
   }
 ];
-
-export const TECHNICAL_SKILLS = {
-  protocols: [
-    "eBPF / XDP Datapaths",
-    "WebRTC (SCTP & DataChannels)",
-    "QUIC & HTTP/3",
-    "BGP & Multi-Commodity Routing",
-    "IEEE 1588 Precision Time Protocol",
-    "MQTT & CoAP (IoT Edge)",
-    "P2P Gossip & Epidemic Routing",
-    "Dense WDM Optical Protocols"
-  ],
-  engineering: [
-    "Rust (Tokio, Actix, SIMD)",
-    "C++20 (Networking, Audio DSP)",
-    "Linux Systems & Kernel Sockets",
-    "TypeScript & React 19",
-    "WebGL & GLSL Shader Programming",
-    "Python & PyTorch (Audio/Vision)",
-    "Docker, Kubernetes, Terraform",
-    "Wireshark, tcpdump, perf"
-  ],
-  theoretical: [
-    "Information Theory & Shannon Entropy",
-    "Queuing Theory & M/M/1/K Analysis",
-    "Rate-Distortion Theory",
-    "Binaural Psychoacoustics & HRTF",
-    "Zero-Knowledge Proofs (Groth16)",
-    "Kalman Filtering & Jitter Prediction"
-  ]
-};

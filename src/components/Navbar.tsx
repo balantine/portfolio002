@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
-interface NavbarProps {
-  onOpenCvModal: () => void;
-  onOpenThesisModal: () => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onOpenThesisModal }) => {
+export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const currentProgress = (window.scrollY / totalScroll) * 100;
+        setReadingProgress(Math.min(100, Math.max(0, currentProgress)));
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'Thesis', href: '#thesis' },
-    { label: 'Selected Works', href: '#projects' },
-    { label: 'Interactive Lab', href: '#laboratory' },
-    { label: 'Publications', href: '#publications' },
-    { label: 'Curriculum Vitae', href: '#cv' },
+    { label: 'About', href: '#about' },
+    { label: 'Objectives', href: '#objectives' },
+    { label: 'Sequence', href: '#sequence' },
+    { label: 'Competencies', href: '#competencies' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -33,19 +37,34 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onOpenThesisModal
           : 'bg-[#08090C]/40 backdrop-blur-xs border-transparent'
       }`}
     >
+      {/* Thin elegant reading progress bar */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-[#1A1D28] overflow-hidden z-50 pointer-events-none"
+        role="progressbar"
+        aria-valuenow={Math.round(readingProgress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Reading progress"
+      >
+        <div
+          className="h-full bg-gradient-to-r from-[#00529B] via-[#E2B774] to-[#F3D5A5] transition-all duration-75 ease-out shadow-[0_0_8px_rgba(226,183,116,0.5)]"
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Brand Wordmark */}
         <a
           href="#"
           className="group flex items-baseline gap-2 text-xl font-normal tracking-tight font-serif-display text-[#F5F5F7] hover:text-[#E2B774] transition-colors"
         >
-          <span className="text-2xl font-serif-display font-medium">Julian Vance</span>
-          <span className="text-xs font-mono-tech text-[#8E92A4] tracking-normal uppercase">
-            M.Sc. ICT
+          <span className="text-2xl font-serif-display font-medium">Portfolio</span>
+          <span className="text-xs font-mono-tech text-[#8E92A4] tracking-normal">
+            {PERSONAL_INFO.handle}
           </span>
         </a>
 
-        {/* Zone 2: 4-6 nav links, 1-2 word labels, single line */}
+        {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#A5A9B8]">
           {navLinks.map((link) => (
             <a
@@ -58,20 +77,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onOpenThesisModal
           ))}
         </nav>
 
-        {/* Zone 3: 1-2 primary actions */}
+        {/* Primary Action Buttons */}
         <div className="flex items-center gap-3">
-          <button
-            onClick={onOpenThesisModal}
-            className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-medium font-mono-tech text-[#D4D7E2] hover:text-white bg-[#14161F] hover:bg-[#1D202D] border border-[#272B3B] rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+          <a
+            href={PERSONAL_INFO.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium font-mono-tech text-[#D4D7E2] hover:text-white bg-[#14161F] hover:bg-[#1D202D] border border-[#272B3B] rounded-lg transition-colors whitespace-nowrap"
           >
-            <span>Thesis Dossier</span>
-          </button>
+            <span>Resume (Avalon.dev)</span>
+            <span className="text-[10px] text-[#E2B774]">↗</span>
+          </a>
 
           <a
             href="#contact"
-            className="px-4 py-2 text-xs font-medium text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors whitespace-nowrap font-medium cursor-pointer shadow-sm hover:shadow"
+            className="px-4 py-2 text-xs font-medium text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-sm hover:shadow"
           >
-            Inquiries
+            Contact Jake
           </a>
 
           {/* Mobile hamburger button */}
@@ -106,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onOpenThesisModal
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden px-6 py-4 bg-[#0B0C11] border-b border-[#222530] space-y-3">
           {navLinks.map((link) => (
@@ -119,16 +141,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCvModal, onOpenThesisModal
               {link.label}
             </a>
           ))}
-          <div className="pt-2 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenCvModal();
-              }}
+          <div className="pt-2 flex flex-col gap-2 border-t border-[#1C202F]">
+            <a
+              href={PERSONAL_INFO.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full text-left py-2 text-xs font-mono-tech text-[#E2B774]"
             >
-              View Full Academic CV →
-            </button>
+              View Resume on Avalon.dev ↗
+            </a>
           </div>
         </div>
       )}
