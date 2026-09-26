@@ -1,5 +1,6 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import blueDevilHeroImage from '../assets/images/regenerated_image_1790449142702.png';
 
 export const Hero: React.FC = () => {
   return (
@@ -140,7 +141,7 @@ export const Hero: React.FC = () => {
               <div className="relative rounded-xl bg-[#08090C] border border-[#1A1D27] overflow-hidden mb-5">
                 <div className="aspect-[4/3] w-full relative flex items-center justify-center bg-radial from-[#00529B]/20 via-[#08090C] to-[#08090C]">
                   <img
-                    src={PERSONAL_INFO.images.blueDevilHero}
+                    src={blueDevilHeroImage}
                     alt="Digital Hacker Blue Devil Mascot"
                     className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

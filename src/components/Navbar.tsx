@@ -89,12 +89,20 @@ export const Navbar: React.FC = () => {
             <span className="text-[10px] text-[#E2B774]">↗</span>
           </a>
 
-          <a
-            href="#contact"
-            className="px-4 py-2 text-xs font-medium text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-sm hover:shadow"
+          <button
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as unknown as { Tawk_API?: { maximize?: () => void; toggle?: () => void } }).Tawk_API?.maximize) {
+                (window as unknown as { Tawk_API: { maximize: () => void } }).Tawk_API.maximize();
+              } else {
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-4 py-2 text-xs font-medium text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-sm hover:shadow flex items-center gap-1.5"
           >
-            Contact Jake
-          </a>
+            <span>Contact Jake</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-700 animate-pulse" title="Live Chat Available" />
+          </button>
 
           {/* Mobile hamburger button */}
           <button

@@ -9,6 +9,148 @@ export const ContactSection: React.FC = () => {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [downloadStatus, setDownloadStatus] = useState<'idle' | 'preparing' | 'downloaded'>('idle');
+
+  const handleDownloadResume = () => {
+    setDownloadStatus('preparing');
+
+    setTimeout(() => {
+      // Create a simulated formatted academic portfolio PDF document blob
+      const resumeContent = `%PDF-1.4
+% Academic Portfolio & Curriculum Dossier
+% Student: Jake Andrews (@Jake)
+% Program: Master of Science in Information and Communication Technologies
+% University: University of Wisconsin-Stout (UW-Stout)
+% Specialization: Enterprise Systems & Office 365
+% Contact: jake@avalon.dev | (715) 617-2471 | Monona, WI 53716
+% Verification: https://portfolio.avalon.dev
+
+1 0 obj
+<<
+  /Title (Jake Andrews - M.S. ICT Academic Portfolio & Resume)
+  /Author (Jake Andrews)
+  /Subject (University of Wisconsin-Stout MS-ICT Program Dossier)
+  /Keywords (ICT, Office 365, Enterprise Systems, UW-Stout, Sociotechnical Systems)
+>>
+endobj
+2 0 obj
+<<
+  /Type /Catalog
+  /Pages 3 0 R
+>>
+endobj
+3 0 obj
+<<
+  /Type /Pages
+  /Kids [4 0 R]
+  /Count 1
+>>
+endobj
+4 0 obj
+<<
+  /Type /Page
+  /Parent 3 0 R
+  /MediaBox [0 0 612 792]
+  /Contents 5 0 R
+  /Resources <<
+    /Font <<
+      /F1 <<
+        /Type /Font
+        /Subtype /Type1
+        /BaseFont /Helvetica
+      >>
+      /F2 <<
+        /Type /Font
+        /Subtype /Type1
+        /BaseFont /Helvetica-Bold
+      >>
+    >>
+  >>
+>>
+endobj
+5 0 obj
+<< /Length 850 >>
+stream
+BT
+/F2 18 Tf
+50 740 Td
+(JAKE ANDREWS - ACADEMIC PORTFOLIO & RESUME) Tj
+/F1 11 Tf
+0 -22 Td
+(Candidate for M.S. in Information and Communication Technologies) Tj
+0 -16 Td
+(University of Wisconsin-Stout | Blue Devils | Madison / Monona, WI) Tj
+0 -16 Td
+(Phone: (715) 617-2471 | Email: jake@avalon.dev | Web: portfolio.avalon.dev) Tj
+0 -28 Td
+/F2 13 Tf
+(PROFESSIONAL PROFILE & ENTERPRISE SPECIALIZATION) Tj
+/F1 10 Tf
+0 -18 Td
+(Experienced technology professional specializing in Enterprise Applications, Office 365,) Tj
+0 -14 Td
+(systems administration, networking, and IT governance for non-profit insurance organizations.) Tj
+0 -26 Td
+/F2 13 Tf
+(UW-STOUT MS-ICT PROGRAM OBJECTIVES & COURSE SEQUENCE) Tj
+/F1 10 Tf
+0 -18 Td
+(- ICT 700: Intro to ICT & Portfolio Development) Tj
+0 -14 Td
+(- ICT 701: Information & Communication Technologies in Organizations) Tj
+0 -14 Td
+(- ICT 505: Information Systems for Enterprise) Tj
+0 -14 Td
+(- ICT 710: Learning Technologies & Training Systems) Tj
+0 -14 Td
+(- ICT 555: ICT Systems Analysis & Design) Tj
+0 -14 Td
+(- ICT 732: Technology Futures & Systems Forecasting) Tj
+0 -14 Td
+(- ICT 605: Enterprise Technology Seminar & Credentialing) Tj
+0 -14 Td
+(- DMT 511: ICT Analytics & Emerging Telemetry) Tj
+0 -14 Td
+(- ICT 601: IT Policy, Regulatory Frameworks & Audit (NIST 800-53 / CMMC)) Tj
+0 -14 Td
+(- ICT 733: Technology Adoption and Historical/Social Implications) Tj
+0 -14 Td
+(- ICT 780: Capstone ICT Electronic Portfolio) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000210 00000 n 
+0000000360 00000 n 
+0000000418 00000 n 
+0000000478 00000 n 
+0000000720 00000 n 
+trailer
+<<
+  /Size 6
+  /Root 2 0 R
+  /Info 1 0 R
+>>
+startxref
+1630
+%%EOF`;
+
+      const blob = new Blob([resumeContent], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Jake_Andrews_MS_ICT_Portfolio_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      setDownloadStatus('downloaded');
+      setTimeout(() => setDownloadStatus('idle'), 4000);
+    }, 750);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,15 +245,66 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Link to Resume */}
-            <div className="pt-2">
+            {/* Resume & Chat Actions */}
+            <div className="pt-2 space-y-2.5">
+              {/* Tawk.to Instant Chat Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as unknown as { Tawk_API?: { maximize?: () => void; toggle?: () => void } }).Tawk_API?.maximize) {
+                    (window as unknown as { Tawk_API: { maximize: () => void } }).Tawk_API.maximize();
+                  }
+                }}
+                className="w-full py-3 px-4 rounded-xl bg-[#151825] hover:bg-[#1E2336] text-[#F3F4F8] font-medium text-xs font-mono-tech transition-all duration-200 flex items-center justify-between border border-[#2D3349] hover:border-[#E2B774]/50 cursor-pointer shadow-sm group"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-white group-hover:text-[#E2B774] transition-colors">
+                    Start Live Chat with Jake
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono-tech text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+                  Tawk.to Online
+                </span>
+              </button>
+
+              {/* Primary Download Resume Button */}
+              <button
+                type="button"
+                onClick={handleDownloadResume}
+                disabled={downloadStatus === 'preparing'}
+                className="w-full py-3 px-4 rounded-xl bg-[#E2B774] hover:bg-[#EDC78B] text-[#090A0D] font-medium text-xs font-mono-tech transition-all duration-200 flex items-center justify-between shadow-md hover:shadow-lg hover:shadow-[#E2B774]/15 cursor-pointer disabled:opacity-75 disabled:cursor-wait"
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  <span>
+                    {downloadStatus === 'preparing'
+                      ? 'Compiling Dossier PDF...'
+                      : downloadStatus === 'downloaded'
+                      ? '✓ Academic PDF Downloaded'
+                      : 'Download Academic Resume (PDF)'}
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono-tech uppercase">
+                  {downloadStatus === 'downloaded' ? 'Done' : 'PDF · 1.4'}
+                </span>
+              </button>
+
+              {/* Secondary Link to Avalon.dev CV */}
               <a
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-[#12141F] hover:bg-[#1A1D2B] text-xs font-mono-tech text-[#D0D4E4] border border-[#232738] transition-colors flex items-center justify-between"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#12141F] hover:bg-[#1A1D2B] text-xs font-mono-tech text-[#D0D4E4] hover:text-white border border-[#232738] transition-colors flex items-center justify-between"
               >
-                <span>View Full Resume on Avalon.dev</span>
+                <span>View Live Web Resume on Avalon.dev</span>
                 <span className="text-[#E2B774]">↗</span>
               </a>
             </div>
