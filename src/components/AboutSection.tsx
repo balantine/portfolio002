@@ -3,19 +3,19 @@ import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 border-b border-[#1A1D27] relative bg-[#090A0E]">
+    <section id="about" className="py-24 md:py-32 border-b border-[#22396F]/50 relative bg-[#0D1C42]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1C202C]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#22396F]/60">
           <div>
-            <div className="text-xs font-mono-tech text-[#E2B774] tracking-widest uppercase mb-3">
+            <div className="text-xs font-mono-tech text-[#FCF1D0] tracking-widest uppercase mb-3 font-semibold">
               About the Technologist · M.S. ICT Candidate
             </div>
-            <h2 className="text-3xl sm:text-4xl font-serif-display font-normal text-[#F4F4F7] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif-display font-normal text-white tracking-tight">
               About Jake
             </h2>
-            <p className="text-sm text-[#8F94A7] font-light mt-1">
+            <p className="text-sm text-[#FCF1D0]/70 font-light mt-1">
               Northern Wisconsin native, technology practitioner, and graduate student at the University of Wisconsin-Stout.
             </p>
           </div>
@@ -25,7 +25,7 @@ export const AboutSection: React.FC = () => {
               href={PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 text-xs font-mono-tech bg-[#141622] hover:bg-[#1D2132] text-[#E2B774] border border-[#272B3E] rounded-lg transition-colors inline-flex items-center gap-1.5"
+              className="px-4 py-2 text-xs font-mono-tech bg-[#010736] hover:bg-[#22396F] text-[#FCF1D0] border border-[#22396F] rounded-lg transition-colors inline-flex items-center gap-1.5 shadow-sm"
             >
               <span>Resume on Avalon.dev</span>
               <span>↗</span>
@@ -38,7 +38,7 @@ export const AboutSection: React.FC = () => {
           
           {/* Left Column: Authentic Full Narrative */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="space-y-5 text-base sm:text-lg text-[#CCD0DF] font-light leading-relaxed">
+            <div className="space-y-5 text-base sm:text-lg text-[#FCF1D0]/90 font-light leading-relaxed">
               <p>
                 I'm <strong className="text-white font-medium">Jake</strong>, a Northern WI native with a background in 
                 tourism from restaurants to campsites, though my passion lies in technology. From networking and coding 
@@ -46,36 +46,36 @@ export const AboutSection: React.FC = () => {
               </p>
 
               <p>
-                Currently residing in <span className="text-[#E2B774]">Madison, WI</span>, I work for a not-for-profit 
+                Currently residing in <span className="text-[#FCF1D0] font-medium underline underline-offset-4 decoration-[#22396F]">Madison, WI</span>, I work for a not-for-profit 
                 insurance company, specializing in <span className="text-white font-medium">Office 365</span>. My resume 
-                can be found on <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="text-[#E2B774] underline underline-offset-4 hover:text-[#EDC78B]">Avalon.dev</a>.
+                can be found on <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="text-[#FCF1D0] font-semibold underline underline-offset-4 hover:text-white">Avalon.dev</a>.
               </p>
 
               <p>
-                Beyond work, I indulge in <span className="text-[#E2B774]">House music</span>, <span className="text-[#E2B774]">alpha chill</span>, 
+                Beyond work, I indulge in <span className="text-[#FCF1D0] font-medium">House music</span>, <span className="text-[#FCF1D0] font-medium">alpha chill</span>, 
                 and enjoy walking and exercising. If you'd like to get in touch, visit my contact form/page or reach out via 
                 text, call, or email.
               </p>
 
-              <p className="text-sm text-[#9FA4B8] bg-[#0E1018] p-5 rounded-xl border border-[#1E2334]">
+              <p className="text-sm text-[#FCF1D0]/80 bg-[#010736]/70 p-5 rounded-xl border border-[#22396F]/60">
                 I'm also planning to blog more while organizing my papers and preparing for graduate-level courses and certificates in the near future!
               </p>
             </div>
 
             {/* University & Program Badge Banner */}
-            <div className="p-6 rounded-2xl bg-[#0D0F17] border border-[#1F2436] flex flex-col sm:flex-row items-center justify-between gap-5">
+            <div className="p-6 rounded-2xl bg-[#010736] border border-[#22396F] flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
               <div className="flex items-center gap-4">
                 <img
                   src={PERSONAL_INFO.images.uwStoutLogo}
                   alt="UW Stout Emblem"
-                  className="w-12 h-12 object-contain bg-white/5 p-1 rounded-lg border border-[#272B3E]"
+                  className="w-12 h-12 object-contain bg-white/10 p-1 rounded-lg border border-[#22396F]"
                   loading="lazy"
                 />
                 <div>
                   <h4 className="text-base font-serif-display text-white">
                     University of Wisconsin-Stout
                   </h4>
-                  <p className="text-xs font-mono-tech text-[#8E93AA]">
+                  <p className="text-xs font-mono-tech text-[#FCF1D0]/70">
                     M.S. in Information and Communication Technologies · Go Blue Devils!
                   </p>
                 </div>
@@ -85,30 +85,30 @@ export const AboutSection: React.FC = () => {
                 href={PERSONAL_INFO.programUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-xs font-mono-tech bg-[#171926] hover:bg-[#202436] text-[#E2B774] rounded-lg border border-[#272C3E] transition-colors whitespace-nowrap"
+                className="px-4 py-2 text-xs font-mono-tech bg-[#22396F] hover:bg-[#22396F]/80 text-[#FCF1D0] hover:text-white rounded-lg border border-[#22396F] transition-colors whitespace-nowrap shadow-xs"
               >
                 About the Program ↗
               </a>
             </div>
 
             {/* Technical & Personal Areas */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#1C202F]">
-              <div className="p-4 rounded-xl bg-[#0B0C12] border border-[#1B1E2B] space-y-1">
-                <div className="text-xs font-mono-tech text-[#E2B774]">Enterprise Tech</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#22396F]/60">
+              <div className="p-4 rounded-xl bg-[#010736]/80 border border-[#22396F]/60 space-y-1">
+                <div className="text-xs font-mono-tech text-[#FCF1D0] font-semibold">Enterprise Tech</div>
                 <div className="text-sm text-white">Office 365 &amp; Systems</div>
-                <div className="text-[11px] font-mono-tech text-[#6F7488]">Networking, Support &amp; Engineering</div>
+                <div className="text-[11px] font-mono-tech text-[#FCF1D0]/60">Networking, Support &amp; Engineering</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#0B0C12] border border-[#1B1E2B] space-y-1">
-                <div className="text-xs font-mono-tech text-[#E2B774]">Creative Passion</div>
+              <div className="p-4 rounded-xl bg-[#010736]/80 border border-[#22396F]/60 space-y-1">
+                <div className="text-xs font-mono-tech text-[#FCF1D0] font-semibold">Creative Passion</div>
                 <div className="text-sm text-white">House Music &amp; Chill</div>
-                <div className="text-[11px] font-mono-tech text-[#6F7488]">Alpha chill soundscapes</div>
+                <div className="text-[11px] font-mono-tech text-[#FCF1D0]/60">Alpha chill soundscapes</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#0B0C12] border border-[#1B1E2B] space-y-1">
-                <div className="text-xs font-mono-tech text-[#E2B774]">Wellness</div>
+              <div className="p-4 rounded-xl bg-[#010736]/80 border border-[#22396F]/60 space-y-1">
+                <div className="text-xs font-mono-tech text-[#FCF1D0] font-semibold">Wellness</div>
                 <div className="text-sm text-white">Walking &amp; Exercise</div>
-                <div className="text-[11px] font-mono-tech text-[#6F7488]">Outdoor endurance in Madison</div>
+                <div className="text-[11px] font-mono-tech text-[#FCF1D0]/60">Outdoor endurance in Madison</div>
               </div>
             </div>
           </div>
@@ -117,12 +117,12 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Friendly Blue Devil Cartoon Image */}
-            <div className="rounded-2xl bg-[#0D0F17] border border-[#202538] p-5 space-y-3 shadow-xl">
-              <div className="flex items-center justify-between text-xs font-mono-tech text-[#7C8197] pb-2 border-b border-[#1C2030]">
+            <div className="rounded-2xl bg-[#010736] border border-[#22396F] p-5 space-y-3 shadow-xl">
+              <div className="flex items-center justify-between text-xs font-mono-tech text-[#FCF1D0]/80 pb-2 border-b border-[#22396F]/60">
                 <span>BLUE DEVIL GRADUATE ARTIFACT</span>
-                <span className="text-[#E2B774]">UW-Stout Mascot</span>
+                <span className="text-[#FCF1D0] font-medium">UW-Stout Mascot</span>
               </div>
-              <div className="rounded-xl overflow-hidden bg-[#07080B] border border-[#171A26]">
+              <div className="rounded-xl overflow-hidden bg-[#0D1C42] border border-[#22396F]/50">
                 <img
                   src={PERSONAL_INFO.images.blueDevilCartoon}
                   alt="Friendly Blue Devil Hacker Mascot"
@@ -130,18 +130,18 @@ export const AboutSection: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <p className="text-[11px] font-mono-tech text-[#7A7F94] italic text-center">
+              <p className="text-[11px] font-mono-tech text-[#FCF1D0]/70 italic text-center">
                 Friendly Blue Devil cartoon crafted during MS-ICT study at UW-Stout.
               </p>
             </div>
 
             {/* Northern Wisconsin Lake & Tourism Roots Image */}
-            <div className="rounded-2xl bg-[#0D0F17] border border-[#202538] p-5 space-y-3 shadow-xl">
-              <div className="flex items-center justify-between text-xs font-mono-tech text-[#7C8197] pb-2 border-b border-[#1C2030]">
+            <div className="rounded-2xl bg-[#010736] border border-[#22396F] p-5 space-y-3 shadow-xl">
+              <div className="flex items-center justify-between text-xs font-mono-tech text-[#FCF1D0]/80 pb-2 border-b border-[#22396F]/60">
                 <span>WISCONSIN ROOTS &amp; LANDSCAPE</span>
-                <span className="text-[#8E93AA]">Northern WI</span>
+                <span className="text-[#FCF1D0]/70 font-medium">Northern WI</span>
               </div>
-              <div className="rounded-xl overflow-hidden bg-[#07080B] border border-[#171A26]">
+              <div className="rounded-xl overflow-hidden bg-[#0D1C42] border border-[#22396F]/50">
                 <img
                   src={PERSONAL_INFO.images.lakeLandscape}
                   alt="Northern Wisconsin Lake Landscape"
@@ -149,7 +149,7 @@ export const AboutSection: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <p className="text-[11px] font-mono-tech text-[#7A7F94] italic text-center">
+              <p className="text-[11px] font-mono-tech text-[#FCF1D0]/70 italic text-center">
                 Northern Wisconsin heritage — from tourism, restaurants, and campsites to enterprise technology.
               </p>
             </div>

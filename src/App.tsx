@@ -1,60 +1,66 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AboutSection } from './components/AboutSection';
-import { ObjectivesSection } from './components/ObjectivesSection';
-import { SequenceSection } from './components/SequenceSection';
-import { CompetenciesSection } from './components/CompetenciesSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { RevealSection } from './components/RevealSection';
+import React, { useState, useEffect } from 'react';
+import { Header } from './components/Header';
+import { SiteFooter } from './components/SiteFooter';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { SequencePage } from './pages/SequencePage';
+import { CompetenciesPage } from './pages/CompetenciesPage';
+import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (['/about', '/sequence-1', '/competencies', '/contact'].includes(pathname)) {
+        return pathname;
+      }
+      // Check hash fallback
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['/about', '/sequence-1', '/competencies', '/contact', 'about', 'sequence-1', 'competencies', 'contact'].includes(hash)) {
+        return hash.startsWith('/') ? hash : `/${hash}`;
+      }
+    }
+    return '/';
+  });
+
+  const navigate = (path: string) => {
+    setCurrentPath(path);
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const pathname = window.location.pathname;
+      if (['/about', '/sequence-1', '/competencies', '/contact', '/'].includes(pathname)) {
+        setCurrentPath(pathname);
+      } else {
+        setCurrentPath('/');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#08090C] text-[#ECECEE] selection:bg-[#E2B774] selection:text-[#08090C] relative">
-      {/* Structural Top Navigation Bar with Progress Bar */}
-      <Navbar />
+    <div className="min-h-screen flex flex-col bg-[#010736] text-[#FCF1D0] selection:bg-[#FCF1D0] selection:text-[#010736]">
+      {/* Top Header Navigation matching portfolio.avalon.dev */}
+      <Header currentPath={currentPath} onNavigate={navigate} />
 
-      {/* Main Content Sections mirroring https://portfolio.avalon.dev */}
-      <main>
-        {/* Hero Section */}
-        <RevealSection>
-          <Hero />
-        </RevealSection>
-
-        {/* About Section */}
-        <RevealSection>
-          <AboutSection />
-        </RevealSection>
-
-        {/* MS-ICT Program Objectives Section */}
-        <RevealSection>
-          <ObjectivesSection />
-        </RevealSection>
-
-        {/* M.S. ICT Course Sequence Section */}
-        <RevealSection>
-          <SequenceSection />
-        </RevealSection>
-
-        {/* M.S. ICT Core & Emphasis Competencies */}
-        <RevealSection>
-          <CompetenciesSection />
-        </RevealSection>
-
-        {/* Contact Jake Section */}
-        <RevealSection>
-          <ContactSection />
-        </RevealSection>
+      {/* Main Content Render based on current route */}
+      <main className="flex-1">
+        {currentPath === '/' && <HomePage />}
+        {currentPath === '/about' && <AboutPage onNavigate={navigate} />}
+        {currentPath === '/sequence-1' && <SequencePage />}
+        {currentPath === '/competencies' && <CompetenciesPage />}
+        {currentPath === '/contact' && <ContactPage />}
       </main>
 
-      {/* Quiet Footer */}
-      <Footer />
+      {/* Squarespace Global Footer matching portfolio.avalon.dev */}
+      <SiteFooter onNavigate={navigate} />
     </div>
   );
 }

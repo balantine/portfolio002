@@ -33,13 +33,13 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 border-b ${
         scrolled
-          ? 'bg-[#08090C]/90 backdrop-blur-md border-[#222530]/80 shadow-lg shadow-black/20'
-          : 'bg-[#08090C]/40 backdrop-blur-xs border-transparent'
+          ? 'bg-[#010736]/90 backdrop-blur-md border-[#22396F]/70 shadow-lg shadow-[#010736]/50'
+          : 'bg-[#010736]/50 backdrop-blur-xs border-transparent'
       }`}
     >
-      {/* Thin elegant reading progress bar */}
+      {/* Reading progress bar using #22396F and #FCF1D0 */}
       <div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-[#1A1D28] overflow-hidden z-50 pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-[2px] bg-[#0D1C42] overflow-hidden z-50 pointer-events-none"
         role="progressbar"
         aria-valuenow={Math.round(readingProgress)}
         aria-valuemin={0}
@@ -47,7 +47,7 @@ export const Navbar: React.FC = () => {
         aria-label="Reading progress"
       >
         <div
-          className="h-full bg-gradient-to-r from-[#00529B] via-[#E2B774] to-[#F3D5A5] transition-all duration-75 ease-out shadow-[0_0_8px_rgba(226,183,116,0.5)]"
+          className="h-full bg-gradient-to-r from-[#22396F] via-[#FCF1D0] to-[#FCF1D0] transition-all duration-75 ease-out shadow-[0_0_8px_rgba(252,241,208,0.5)]"
           style={{ width: `${readingProgress}%` }}
         />
       </div>
@@ -56,21 +56,21 @@ export const Navbar: React.FC = () => {
         {/* Brand Wordmark */}
         <a
           href="#"
-          className="group flex items-baseline gap-2 text-xl font-normal tracking-tight font-serif-display text-[#F5F5F7] hover:text-[#E2B774] transition-colors"
+          className="group flex items-baseline gap-2 text-xl font-normal tracking-tight font-serif-display text-[#FCF1D0] hover:text-white transition-colors"
         >
-          <span className="text-2xl font-serif-display font-medium">Portfolio</span>
-          <span className="text-xs font-mono-tech text-[#8E92A4] tracking-normal">
+          <span className="text-2xl font-serif-display font-medium text-[#FCF1D0]">Portfolio</span>
+          <span className="text-xs font-mono-tech text-[#FCF1D0]/70 tracking-normal group-hover:text-[#FCF1D0]">
             {PERSONAL_INFO.handle}
           </span>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#A5A9B8]">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#FCF1D0]/75">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative py-1 whitespace-nowrap hover:text-[#F5F5F7] transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#E2B774] hover:after:w-full after:transition-all after:duration-200"
+              className="relative py-1 whitespace-nowrap hover:text-[#FCF1D0] transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#FCF1D0] hover:after:w-full after:transition-all after:duration-200"
             >
               {link.label}
             </a>
@@ -83,10 +83,10 @@ export const Navbar: React.FC = () => {
             href={PERSONAL_INFO.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium font-mono-tech text-[#D4D7E2] hover:text-white bg-[#14161F] hover:bg-[#1D202D] border border-[#272B3B] rounded-lg transition-colors whitespace-nowrap"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium font-mono-tech text-[#FCF1D0] hover:text-white bg-[#0D1C42] hover:bg-[#22396F] border border-[#22396F] rounded-lg transition-colors whitespace-nowrap shadow-xs"
           >
             <span>Resume (Avalon.dev)</span>
-            <span className="text-[10px] text-[#E2B774]">↗</span>
+            <span className="text-[10px] text-[#FCF1D0]">↗</span>
           </a>
 
           <button
@@ -98,16 +98,16 @@ export const Navbar: React.FC = () => {
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="px-4 py-2 text-xs font-medium text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-sm hover:shadow flex items-center gap-1.5"
+            className="px-4 py-2 text-xs font-semibold text-[#010736] bg-[#FCF1D0] hover:bg-white rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-md hover:shadow-lg flex items-center gap-1.5"
           >
             <span>Contact Jake</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-700 animate-pulse" title="Live Chat Available" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" title="Live Chat Available" />
           </button>
 
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-[#A5A9B8] hover:text-white focus:outline-none cursor-pointer"
+            className="md:hidden p-2 text-[#FCF1D0]/80 hover:text-[#FCF1D0] focus:outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             <svg
@@ -138,23 +138,23 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-6 py-4 bg-[#0B0C11] border-b border-[#222530] space-y-3">
+        <div className="md:hidden px-6 py-4 bg-[#0D1C42] border-b border-[#22396F] space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm text-[#C0C4D4] hover:text-white transition-colors"
+              className="block py-2 text-sm text-[#FCF1D0]/80 hover:text-[#FCF1D0] transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-2 flex flex-col gap-2 border-t border-[#1C202F]">
+          <div className="pt-2 flex flex-col gap-2 border-t border-[#22396F]/50">
             <a
               href={PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-left py-2 text-xs font-mono-tech text-[#E2B774]"
+              className="w-full text-left py-2 text-xs font-mono-tech text-[#FCF1D0]"
             >
               View Resume on Avalon.dev ↗
             </a>

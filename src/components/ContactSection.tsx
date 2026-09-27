@@ -171,24 +171,24 @@ startxref
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 border-b border-[#1A1D27] relative bg-[#090A0E]">
+    <section id="contact" className="py-24 md:py-32 border-b border-[#22396F]/50 relative bg-[#0D1C42]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#1C202C]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#22396F]/60">
           <div>
-            <div className="text-xs font-mono-tech text-[#E2B774] tracking-widest uppercase mb-3">
+            <div className="text-xs font-mono-tech text-[#FCF1D0] tracking-widest uppercase mb-3 font-semibold">
               Get in Touch · Let's Work Together
             </div>
-            <h2 className="text-3xl sm:text-4xl font-serif-display font-normal text-[#F4F4F7] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif-display font-normal text-white tracking-tight">
               Contact Jake
             </h2>
-            <p className="text-sm text-[#8F94A7] font-light mt-1">
+            <p className="text-sm text-[#FCF1D0]/70 font-light mt-1">
               Please provide some information on your project or goals and we'll move the conversation on from there.
             </p>
           </div>
 
-          <div className="mt-4 md:mt-0 text-xs font-mono-tech text-[#7C8197]">
+          <div className="mt-4 md:mt-0 text-xs font-mono-tech text-[#FCF1D0]/70">
             {PERSONAL_INFO.handle} · MONONA, WI
           </div>
         </div>
@@ -196,21 +196,21 @@ startxref
         {/* 2-Column Grid matching portfolio.avalon.dev */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
-          {/* Left Column: Direct Contact Information from portfolio.avalon.dev */}
+          {/* Left Column: Direct Contact Information */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-3">
               <h3 className="text-2xl font-serif-display text-white font-normal">
                 Let's Work Together
               </h3>
-              <p className="text-sm text-[#959AAE] font-light leading-relaxed">
+              <p className="text-sm text-[#FCF1D0]/80 font-light leading-relaxed">
                 Whether you have questions about my MS-ICT coursework at UW-Stout, Office 365 enterprise implementations, or prospective opportunities, reach out directly.
               </p>
             </div>
 
             <div className="space-y-3 text-xs font-mono-tech">
               {/* Physical Address */}
-              <div className="p-4 rounded-xl bg-[#0C0D14] border border-[#1E2232] space-y-1">
-                <span className="text-[#6D7286] block text-[11px] uppercase tracking-wider">
+              <div className="p-4 rounded-xl bg-[#010736] border border-[#22396F] space-y-1 shadow-sm">
+                <span className="text-[#FCF1D0]/60 block text-[11px] uppercase tracking-wider">
                   Mailing Address
                 </span>
                 <span className="text-white text-sm block font-sans-body">
@@ -219,26 +219,26 @@ startxref
               </div>
 
               {/* Phone */}
-              <div className="p-4 rounded-xl bg-[#0C0D14] border border-[#1E2232] space-y-1">
-                <span className="text-[#6D7286] block text-[11px] uppercase tracking-wider">
+              <div className="p-4 rounded-xl bg-[#010736] border border-[#22396F] space-y-1 shadow-sm">
+                <span className="text-[#FCF1D0]/60 block text-[11px] uppercase tracking-wider">
                   Call or Text
                 </span>
                 <a
                   href={`tel:${PERSONAL_INFO.phone.replace(/[^0-9]/g, '')}`}
-                  className="text-white hover:text-[#E2B774] text-sm block font-sans-body transition-colors"
+                  className="text-[#FCF1D0] hover:text-white text-sm block font-sans-body transition-colors font-medium"
                 >
                   {PERSONAL_INFO.phone}
                 </a>
               </div>
 
               {/* Email */}
-              <div className="p-4 rounded-xl bg-[#0C0D14] border border-[#1E2232] space-y-1">
-                <span className="text-[#6D7286] block text-[11px] uppercase tracking-wider">
+              <div className="p-4 rounded-xl bg-[#010736] border border-[#22396F] space-y-1 shadow-sm">
+                <span className="text-[#FCF1D0]/60 block text-[11px] uppercase tracking-wider">
                   Direct Email
                 </span>
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="text-[#E2B774] hover:underline text-sm block font-sans-body"
+                  className="text-[#FCF1D0] hover:underline text-sm block font-sans-body font-semibold"
                 >
                   {PERSONAL_INFO.email}
                 </a>
@@ -255,15 +255,15 @@ startxref
                     (window as unknown as { Tawk_API: { maximize: () => void } }).Tawk_API.maximize();
                   }
                 }}
-                className="w-full py-3 px-4 rounded-xl bg-[#151825] hover:bg-[#1E2336] text-[#F3F4F8] font-medium text-xs font-mono-tech transition-all duration-200 flex items-center justify-between border border-[#2D3349] hover:border-[#E2B774]/50 cursor-pointer shadow-sm group"
+                className="w-full py-3 px-4 rounded-xl bg-[#010736] hover:bg-[#22396F] text-[#FCF1D0] font-medium text-xs font-mono-tech transition-all duration-200 flex items-center justify-between border border-[#22396F] hover:border-[#FCF1D0] cursor-pointer shadow-md group"
               >
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-white group-hover:text-[#E2B774] transition-colors">
+                  <span className="text-white group-hover:text-[#FCF1D0] transition-colors">
                     Start Live Chat with Jake
                   </span>
                 </div>
-                <span className="text-[11px] font-mono-tech text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+                <span className="text-[11px] font-mono-tech text-[#FCF1D0] bg-[#22396F] px-2 py-0.5 rounded border border-[#FCF1D0]/30">
                   Tawk.to Online
                 </span>
               </button>
@@ -273,7 +273,7 @@ startxref
                 type="button"
                 onClick={handleDownloadResume}
                 disabled={downloadStatus === 'preparing'}
-                className="w-full py-3 px-4 rounded-xl bg-[#E2B774] hover:bg-[#EDC78B] text-[#090A0D] font-medium text-xs font-mono-tech transition-all duration-200 flex items-center justify-between shadow-md hover:shadow-lg hover:shadow-[#E2B774]/15 cursor-pointer disabled:opacity-75 disabled:cursor-wait"
+                className="w-full py-3 px-4 rounded-xl bg-[#FCF1D0] hover:bg-white text-[#010736] font-semibold text-xs font-mono-tech transition-all duration-200 flex items-center justify-between shadow-md hover:shadow-lg cursor-pointer disabled:opacity-75 disabled:cursor-wait"
               >
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,7 +292,7 @@ startxref
                       : 'Download Academic Resume (PDF)'}
                   </span>
                 </div>
-                <span className="text-[11px] font-mono-tech uppercase">
+                <span className="text-[11px] font-mono-tech uppercase font-bold">
                   {downloadStatus === 'downloaded' ? 'Done' : 'PDF · 1.4'}
                 </span>
               </button>
@@ -302,31 +302,31 @@ startxref
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-xl bg-[#12141F] hover:bg-[#1A1D2B] text-xs font-mono-tech text-[#D0D4E4] hover:text-white border border-[#232738] transition-colors flex items-center justify-between"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#010736] hover:bg-[#22396F] text-xs font-mono-tech text-[#FCF1D0] hover:text-white border border-[#22396F] transition-colors flex items-center justify-between shadow-xs"
               >
                 <span>View Live Web Resume on Avalon.dev</span>
-                <span className="text-[#E2B774]">↗</span>
+                <span className="text-[#FCF1D0]">↗</span>
               </a>
             </div>
           </div>
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-7 sm:p-8 rounded-2xl bg-[#0D0F17] border border-[#202538] shadow-xl">
+            <div className="p-7 sm:p-8 rounded-2xl bg-[#010736] border border-[#22396F] shadow-2xl">
               
               <h3 className="text-lg font-serif-display text-white mb-6">
                 Send a Message
               </h3>
 
               {status === 'success' ? (
-                <div className="p-6 rounded-xl bg-[#0A1813] border border-emerald-500/30 text-center space-y-3 animate-fade-in">
+                <div className="p-6 rounded-xl bg-[#0D1C42] border border-emerald-500/50 text-center space-y-3 animate-fade-in">
                   <div className="text-emerald-400 text-lg font-medium">✓ Message Sent</div>
-                  <p className="text-xs font-mono-tech text-[#A4C4B5] leading-relaxed">
+                  <p className="text-xs font-mono-tech text-[#FCF1D0] leading-relaxed">
                     Thank you! Your message has been received. I'll get back to you shortly.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="px-4 py-2 text-xs font-mono-tech bg-[#14261F] text-emerald-300 rounded-lg hover:bg-[#1C362C] transition-colors cursor-pointer"
+                    className="px-4 py-2 text-xs font-mono-tech bg-[#22396F] text-[#FCF1D0] rounded-lg hover:bg-white hover:text-[#010736] transition-colors cursor-pointer"
                   >
                     Send Another Message
                   </button>
@@ -335,7 +335,7 @@ startxref
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono-tech text-[#8A8F9F]">
+                      <label className="text-xs font-mono-tech text-[#FCF1D0]/80">
                         Name *
                       </label>
                       <input
@@ -344,12 +344,12 @@ startxref
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Your Name"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#090A0F] border border-[#222638] text-white text-xs focus:outline-none focus:border-[#E2B774] transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0D1C42] border border-[#22396F] text-white text-xs focus:outline-none focus:border-[#FCF1D0] transition-colors placeholder:text-[#FCF1D0]/40"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono-tech text-[#8A8F9F]">
+                      <label className="text-xs font-mono-tech text-[#FCF1D0]/80">
                         Email *
                       </label>
                       <input
@@ -358,13 +358,13 @@ startxref
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="your@email.com"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#090A0F] border border-[#222638] text-white text-xs focus:outline-none focus:border-[#E2B774] transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#0D1C42] border border-[#22396F] text-white text-xs focus:outline-none focus:border-[#FCF1D0] transition-colors placeholder:text-[#FCF1D0]/40"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono-tech text-[#8A8F9F]">
+                    <label className="text-xs font-mono-tech text-[#FCF1D0]/80">
                       Message *
                     </label>
                     <textarea
@@ -373,12 +373,12 @@ startxref
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please provide some information on your project or goals..."
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#090A0F] border border-[#222638] text-white text-xs focus:outline-none focus:border-[#E2B774] transition-colors resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#0D1C42] border border-[#22396F] text-white text-xs focus:outline-none focus:border-[#FCF1D0] transition-colors resize-none placeholder:text-[#FCF1D0]/40"
                     />
                   </div>
 
                   {status === 'error' && (
-                    <div className="text-xs font-mono-tech text-rose-400">
+                    <div className="text-xs font-mono-tech text-rose-300">
                       Please fill out all required fields.
                     </div>
                   )}
@@ -386,7 +386,7 @@ startxref
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="w-full py-3 px-4 text-xs font-mono-tech text-[#090A0D] bg-[#E2B774] hover:bg-[#EDC78B] rounded-lg transition-colors cursor-pointer font-medium shadow-md flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 text-xs font-mono-tech text-[#010736] bg-[#FCF1D0] hover:bg-white rounded-lg transition-colors cursor-pointer font-bold shadow-md flex items-center justify-center gap-2"
                   >
                     <span>{status === 'submitting' ? 'Sending...' : 'Submit Message →'}</span>
                   </button>
