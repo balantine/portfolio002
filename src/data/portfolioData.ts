@@ -1,4 +1,5 @@
 import { CourseItem, CoreCompetency, EmphasisCompetency } from '../types/portfolio';
+import blueDevilRegenerated from '../assets/images/regenerated_image_1790449142702.png';
 
 export const PERSONAL_INFO = {
   name: "Jake",
@@ -16,11 +17,13 @@ export const PERSONAL_INFO = {
   reflectionAidUrl: "https://drive.google.com/file/d/1MFYHEJpY1QnU9W5UxU4cTgSPqagwu0Hb/view?usp=drive_link",
   bio: `I'm Jake, a Northern WI native with a background in tourism from restaurants to campsites, though my passion lies in technology. From networking and coding to support and engineering, I've gained valuable experience helping people connect and find information. Currently residing in Madison, WI, I work for a not-for-profit insurance company, specializing in Office 365. My resume can be found on Avalon.dev. Beyond work, I indulge in House music, alpha chill, and enjoy walking and exercising. If you'd like to get in touch, visit my contact form/page or reach out via text, call, or email. I'm also planning to blog more while organizing my papers and preparing for graduate-level courses and certificates in the near future! This portfolio was produced while a student at UW-Stout in the M.S. ICT program: About the Program - Go Blue Devils!`,
   images: {
-    blueDevilHero: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/d4ca06ab-30a5-4c36-9985-296664301f28/gestalt3747_full_body_display_of_digital_hacker_blue_devil_hold_4e52af0b-c6ae-41f4-9c97-17053e4215cc.png",
+    blueDevilHero: blueDevilRegenerated,
     uwStoutLogo: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/033b938f-76ca-4c38-80d6-dd63e2ca21a1/UW-Stout-Formal-WPU-Logo_Full-Color_Flat_RGB.svg.png",
     lakeLandscape: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/83bdb61d-2b1a-413d-96d6-563625e37f82/Pasted+image+20220518115815.png",
     blueDevilCartoon: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/95782986-1244-4f84-a99a-227fd4817222/friendlygestalt3747_cartoon_of_a_friendly_blue_devil_hacker_wearing_a_h_7f27c3f7-cbdc-46af-9493-a9552e1e6b82.png",
     aiChipConcept: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/42c87709-0faa-464b-aaa1-ad340f676179/Efficient-AI-Chip-Art-Concept-1536x1024.jpg",
+    sequenceHardware: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/b87963ca-4c1a-4901-b244-f20ca53b2428/motherboard1_single_1920x1080.jpg",
+    competenciesStudy: "https://images.squarespace-cdn.com/content/v1/65594014335cfa705974cf81/1701809863266-WCM26DSDZMYXRYWDEPT3/image-asset.jpeg",
   }
 };
 

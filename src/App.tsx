@@ -14,9 +14,11 @@ export default function App() {
       if (['/about', '/sequence-1', '/competencies', '/contact'].includes(pathname)) {
         return pathname;
       }
-      // Check hash fallback
       const hash = window.location.hash.replace('#', '');
-      if (hash && ['/about', '/sequence-1', '/competencies', '/contact', 'about', 'sequence-1', 'competencies', 'contact'].includes(hash)) {
+      if (
+        hash &&
+        ['/about', '/sequence-1', '/competencies', '/contact', 'about', 'sequence-1', 'competencies', 'contact'].includes(hash)
+      ) {
         return hash.startsWith('/') ? hash : `/${hash}`;
       }
     }
@@ -46,20 +48,17 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#010736] text-[#FCF1D0] selection:bg-[#FCF1D0] selection:text-[#010736]">
-      {/* Top Header Navigation matching portfolio.avalon.dev */}
+    <div className="min-h-screen flex flex-col bg-archival-paper text-[#181615] selection:bg-[#1E3A8A] selection:text-[#F8F6F1]">
       <Header currentPath={currentPath} onNavigate={navigate} />
 
-      {/* Main Content Render based on current route */}
       <main className="flex-1">
-        {currentPath === '/' && <HomePage />}
+        {currentPath === '/' && <HomePage onNavigate={navigate} />}
         {currentPath === '/about' && <AboutPage onNavigate={navigate} />}
-        {currentPath === '/sequence-1' && <SequencePage />}
-        {currentPath === '/competencies' && <CompetenciesPage />}
+        {currentPath === '/sequence-1' && <SequencePage onNavigate={navigate} />}
+        {currentPath === '/competencies' && <CompetenciesPage onNavigate={navigate} />}
         {currentPath === '/contact' && <ContactPage />}
       </main>
 
-      {/* Squarespace Global Footer matching portfolio.avalon.dev */}
       <SiteFooter onNavigate={navigate} />
     </div>
   );

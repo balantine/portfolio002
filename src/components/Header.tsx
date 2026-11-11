@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   currentPath: string;
@@ -8,14 +9,13 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Close menu when route changes or resize
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [currentPath]);
 
   const navItems = [
-    { label: 'About', path: '/about' },
     { label: 'Objectives', path: '/' },
+    { label: 'About', path: '/about' },
     { label: 'Sequence', path: '/sequence-1' },
     { label: 'Competencies', path: '/competencies' },
     { label: 'Contact', path: '/contact' },
@@ -27,22 +27,22 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   };
 
   return (
-    <header className="w-full relative z-40 bg-[#010736] border-b border-[#22396F]/50">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
-        
-        {/* Site Title / Brand matching portfolio.avalon.dev */}
-        <div className="flex items-center">
-          <a
-            href="/"
-            onClick={(e) => handleLinkClick(e, '/')}
-            className="text-2xl md:text-3xl font-serif-display tracking-tight text-white hover:text-[#FCF1D0] transition-colors"
-          >
-            Portfolio
-          </a>
-        </div>
+    <header className="w-full sticky top-0 z-40 bg-[#F8F6F1]/95 backdrop-blur-md border-b border-[#DED8CC]">
+      <div className="max-w-[1380px] mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between gap-8">
+        {/* Zone 1: Single-element Brand Wordmark */}
+        <a
+          href="/"
+          onClick={(e) => handleLinkClick(e, '/')}
+          className="text-2xl md:text-[26px] font-serif-display font-semibold tracking-tight text-[#181615] hover:text-[#1E3A8A] transition-colors duration-150 whitespace-nowrap"
+        >
+          Jake Andrews
+        </a>
 
-        {/* Desktop Navigation Links (Right aligned) */}
-        <nav className="hidden md:flex items-center gap-8 text-[15px] font-sans-body tracking-wide">
+        {/* Zone 2: Clean Single-Line Text Navigation */}
+        <nav
+          aria-label="Primary portfolio navigation"
+          className="hidden md:flex items-center gap-8"
+        >
           {navItems.map((item) => {
             const isActive = currentPath === item.path;
             return (
@@ -50,79 +50,78 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 key={item.path}
                 href={item.path}
                 onClick={(e) => handleLinkClick(e, item.path)}
-                className={`py-1 transition-colors relative ${
+                aria-current={isActive ? 'page' : undefined}
+                className={`relative py-1.5 text-sm font-sans-body whitespace-nowrap transition-colors duration-150 ${
                   isActive
-                    ? 'text-white font-medium after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1.5px] after:bg-[#FCF1D0]'
-                    : 'text-[#FCF1D0]/75 hover:text-white'
+                    ? 'text-[#181615] font-medium'
+                    : 'text-[#57534E] hover:text-[#181615]'
                 }`}
               >
                 {item.label}
+                <span
+                  className={`absolute bottom-0 left-0 right-0 h-[1.5px] transition-opacity duration-150 ${
+                    isActive ? 'bg-[#1E3A8A] opacity-100' : 'bg-[#181615] opacity-0'
+                  }`}
+                />
               </a>
             );
           })}
         </nav>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-[#FCF1D0] hover:text-white focus:outline-none cursor-pointer"
-          aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-        >
-          <div className="w-6 h-5 flex flex-col justify-between items-end">
-            <span
-              className={`h-[1.5px] bg-current transition-all duration-300 ${
-                mobileMenuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'
-              }`}
-            />
-            <span
-              className={`h-[1.5px] bg-current transition-all duration-300 ${
-                mobileMenuOpen ? 'opacity-0' : 'w-4'
-              }`}
-            />
-            <span
-              className={`h-[1.5px] bg-current transition-all duration-300 ${
-                mobileMenuOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-6'
-              }`}
-            />
-          </div>
-        </button>
+        {/* Zone 3: Single Primary Action */}
+        <div className="hidden md:flex items-center">
+          <button
+            type="button"
+            onClick={() => onNavigate('/contact')}
+            className="px-4 py-2 text-sm font-sans-body font-medium text-[#F8F6F1] bg-[#181615] hover:bg-[#1E3A8A] transition-colors duration-150 whitespace-nowrap cursor-pointer"
+          >
+            Get in Touch
+          </button>
+        </div>
 
+        {/* Mobile Menu Toggle */}
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 -mr-2 text-[#181615] hover:text-[#1E3A8A] transition-colors duration-150 cursor-pointer"
+          aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0D1C42] border-b border-[#22396F] px-8 py-6 space-y-4 animate-fade-in">
-          {navItems.map((item) => {
-            const isActive = currentPath === item.path;
-            return (
-              <a
-                key={item.path}
-                href={item.path}
-                onClick={(e) => handleLinkClick(e, item.path)}
-                className={`block text-lg font-serif-display ${
-                  isActive ? 'text-[#FCF1D0] font-medium' : 'text-white/80 hover:text-white'
-                }`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
-          <div className="pt-4 border-t border-[#22396F]/50 flex items-center justify-between">
-            <a
-              href="https://www.avalon.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-mono-tech text-[#FCF1D0] hover:underline"
+        <div className="md:hidden bg-[#F8F6F1] border-b border-[#DED8CC] px-6 py-6 space-y-4">
+          <nav aria-label="Mobile portfolio navigation" className="flex flex-col divide-y divide-[#E6E0D4]">
+            {navItems.map((item) => {
+              const isActive = currentPath === item.path;
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  onClick={(e) => handleLinkClick(e, item.path)}
+                  className={`py-3 text-xl font-serif-display transition-colors duration-150 ${
+                    isActive
+                      ? 'text-[#1E3A8A] font-semibold italic'
+                      : 'text-[#181615] hover:text-[#1E3A8A]'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => onNavigate('/contact')}
+              className="w-full py-2.5 px-4 text-sm font-sans-body font-medium text-[#F8F6F1] bg-[#181615] hover:bg-[#1E3A8A] transition-colors duration-150 cursor-pointer"
             >
-              Avalon.dev ↗
-            </a>
-            <a
-              href="/contact"
-              onClick={(e) => handleLinkClick(e, '/contact')}
-              className="px-3 py-1.5 text-xs font-semibold text-[#010736] bg-[#FCF1D0] rounded-md"
-            >
-              Contact Jake
-            </a>
+              Get in Touch
+            </button>
           </div>
         </div>
       )}
